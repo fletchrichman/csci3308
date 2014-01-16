@@ -2,7 +2,10 @@
 
 def count_words(string)
 
-    # your code here
+    words_array = string.split(/\W+/)
+    word_count = Hash.new(0)
+    words_array.each { |word| word_count[word.downcase] += 1}
+    word_count
 
 end
 
@@ -10,10 +13,10 @@ end
 
 # Example test cases:
 
-# count_words("A man, a plan, a canal -- Panama")
+puts count_words("A man, a plan, a canal -- Panama")
 
 #     # => {'a' => 3, 'man' => 1, 'canal' => 1, 'panama' => 1, 'plan' => 1}
 
-# count_words "Doo bee doo bee doo"
+puts count_words "Doo bee doo bee doo"
 
 #     # => {'doo' => 3, 'bee' => 2}
