@@ -4,9 +4,11 @@
 
 def palindrome?(string)
 
-    # your code here
+    clean_string = string.downcase.gsub(/[^a-z]/, '') #remove anything that is not a letter
+    puts clean_string.reverse == clean_string
 
 end
+
 
 # Your solution shouldn't use loops or iteration of any kind. Instead, you will find regular-expression syntax very useful; it's reviewed briefly in the book, and the website rubular.com lets you try out Ruby regular expressions "live". Some methods that you might find useful (which you'll have to look up in Ruby documentation, ruby-doc.org) include: String#downcase,  String#gsub,  String#reverse.
 
