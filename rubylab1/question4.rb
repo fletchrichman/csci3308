@@ -21,15 +21,70 @@ def rps_game_winner(game)
 
     raise WrongNumberOfPlayersError unless game.length == 2
 
-    # your code here
-
-End
-
+    first_player_move = game[0][1].downcase
+    second_player_move = game[1][1].downcase
  
+
+    case first_player_move
+
+    when 'r'
+        case second_player_move
+            
+        when 'r'
+            return game[0]
+        when 's'
+            return game[0]
+        when 'p'
+            return game[1]
+        else
+            raise NoSuchStrategyError
+        end
+
+    when 's'
+        case second_player_move
+        
+        when 'r'
+            return game[1]
+        when 's'
+            return game[0]
+        when 'p'
+            return game[0]
+        else
+            raise NoSuchStrategyError
+        end
+    when 'p'
+        case second_player_move
+    
+        when 'r'
+            return game[0]
+        when 's'
+            return game[1]
+        when 'p'
+            return game[0]
+        else
+            raise NoSuchStrategyError
+        end
+
+    else
+        raise NoSuchStrategyError
+    end
+
+end
 
 #(4b) We will define a rock-paper-scissors tournament to be an array of games in which each player always plays the same move. A rock-paper-scissors tournament is encoded as a bracketed array of games:
 
-[
+def rps_tournament_winner(tournament)
+
+    # see if we have gotten to a point where two teams are playing
+    if tournament[0][0].is_a? String
+        return rps_game_winner(tournament)
+    end
+    # Otherwise keep going down the rabbit hole
+    return rps_game_winner([rps_tournament_winner(tournament[0]),rps_tournament_winner(tournament[1])])
+
+end
+
+tournament = [
 
     [
 
@@ -48,6 +103,8 @@ End
     ]
 
 ]
+
+p rps_tournament_winner(tournament)
 
 # In the tournament above Armando will always play P and Dave will always play S. This tournament plays out as follows:
 
