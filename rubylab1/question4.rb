@@ -84,27 +84,27 @@ def rps_tournament_winner(tournament)
 
 end
 
-tournament = [
+# tournament = [
 
-    [
+#     [
 
-        [ ["Armando", "P"], ["Dave", "S"] ],
+#         [ ["Armando", "P"], ["Dave", "S"] ],
 
-        [ ["Richard", "R"],  ["Michael", "S"] ],
+#         [ ["Richard", "R"],  ["Michael", "S"] ],
 
-    ],
+#     ],
 
-    [
+#     [
 
-        [ ["Allen", "S"], ["Omer", "P"] ],
+#         [ ["Allen", "S"], ["Omer", "P"] ],
 
-        [ ["David E.", "R"], ["Richard X.", "P"] ]
+#         [ ["David E.", "R"], ["Richard X.", "P"] ]
 
-    ]
+#     ]
 
-]
+# ]
 
-p rps_tournament_winner(tournament)
+# p rps_tournament_winner(tournament)
 
 # In the tournament above Armando will always play P and Dave will always play S. This tournament plays out as follows:
 

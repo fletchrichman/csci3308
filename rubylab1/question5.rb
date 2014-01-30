@@ -8,13 +8,17 @@
 
 def combine_anagrams(words)
 
-    # your code here
+  words.group_by { |word| word.downcase.chars.sort.join}
 
 end
 
-# Example test case:
 
-# input: ['cars', 'for', 'potatoes', 'racs', 'four', 'scar', 'creams', 'scream']
+
+# # Example test case:
+
+# words =  ['cars', 'for', 'potatoes', 'racs', 'four', 'scar', 'creams', 'scream']
+
+# p combine_anagrams(words)
 
 # output: [ ["cars", "racs", "scar"],
 
