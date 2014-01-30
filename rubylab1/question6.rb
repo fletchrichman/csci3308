@@ -17,3 +17,18 @@
 #                # ==> [“part2.rb~”, “.part3.rb.un~”]
 
 # (Hint: use gsub to replace string subsequences)
+
+def glob_match(filenames, pattern)
+
+  #replace * because current pattern doesn't specify which character it should repeat
+
+  pattern.gsub!(/[\*\?\.]/, '*' => '.*', '.' => '\.', '?' => '.')
+  reg_pattern = Regexp.new(pattern)
+  filenames.select {|filename| filename =~ reg_pattern}
+
+end
+
+# filenames = ['part1.rb', 'part2.rb', 'part2.rb~', '.part3.rb.un~']
+# pattern = '*part*rb?*'
+
+# p glob_match(filenames, pattern)
