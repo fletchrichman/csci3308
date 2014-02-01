@@ -6,26 +6,23 @@
 
 class Dessert
 
+    attr_accesor :name, :calories
+
     def initialize(name, calories)
-
-        # Your code here
-
+        @name = name
+        @calories = calories
     end
 
  
 
     def healthy?
-
-        # Your code here
-
+        if @calories < 200
     end
 
  
 
     def delicious?
-
-        # Your code here
-
+        true
     end
 
 end

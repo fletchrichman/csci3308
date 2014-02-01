@@ -16,30 +16,36 @@
 
 class CartesianProduct
 
-    include Enumerable
+   include Enumerable
 
-    # Your code here
+    def initialize(cartesian_a, cartesian_b)
+      @values = []
+      @values = cartesian_a.product(cartesian_b) unless cartesian_b.empty?
+    end
 
+    def each
+      @values.each{ |v| yield v}
+    end
 end
 
-Example test cases:
+#Example test cases:
 
-c = CartesianProduct.new([:a,:b], [4,5])
+# c = CartesianProduct.new([:a,:b], [4,5])
 
-c.each { |elt| puts elt.inspect }
+# c.each { |elt| puts elt.inspect }
 
-# [:a, 4]
+# # [:a, 4]
 
-# [:a, 5]
+# # [:a, 5]
 
-# [:b, 4]
+# # [:b, 4]
 
-# [:b, 5]
+# # [:b, 5]
 
  
 
-c = CartesianProduct.new([:a,:b], [])
+# c = CartesianProduct.new([], [])
 
-c.each { |elt| puts elt.inspect }
+# c.each { |elt| puts elt.inspect }
 
 # Nothing printed since Cartesian pr
