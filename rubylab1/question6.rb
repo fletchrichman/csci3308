@@ -10,7 +10,7 @@
 
 # Ex: glob_match(
 
-# [“part1.rb”, “part2.rb”, “part2.rb~”, “.part3.rb.un~”],
+# [“part1.rb”, “part2.rb”, “part2.rb~”, “ ”],
 
 # “*part*rb?*”)
 
@@ -22,13 +22,27 @@ def glob_match(filenames, pattern)
 
   #replace * because current pattern doesn't specify which character it should repeat
 
-  pattern.gsub!(/[\*\?\.]/, '*' => '.*', '.' => '\.', '?' => '.')
+  pattern.gsub!(/[\*\.]/, '*' => '.*', '.' => '\.')
+  if pattern.include? "?"
+    split_pattern = pattern.split('?')
+    split_pattern.first[-1] = ".*"
+    split_pattern[1] ||= ''
+    pattern = split_pattern[0] + split_pattern[1]
+  end
   reg_pattern = Regexp.new(pattern)
-  filenames.select {|filename| filename =~ reg_pattern}
 
+  results = Array.new
+
+ filenames.each do |filename| 
+
+    if filename.match(reg_pattern).post_match.empty? and filename.match(reg_pattern).pre_match.empty?
+      results << filename
+    end
+  end
+  results
 end
 
-# filenames = ['part1.rb', 'part2.rb', 'part2.rb~', '.part3.rb.un~']
-# pattern = '*part*rb?*'
+# filenames = ['part1.rb', 'part2.r', 'part2.rb~', '.part3.rb.un~']
+# pattern = '*part*rb?'
 
 # p glob_match(filenames, pattern)
