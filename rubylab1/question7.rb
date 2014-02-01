@@ -6,7 +6,7 @@
 
 class Dessert
 
-    attr_accesor :name, :calories
+    attr_accessor :name, :calories
 
     def initialize(name, calories)
         @name = name
@@ -16,7 +16,7 @@ class Dessert
  
 
     def healthy?
-        if @calories < 200
+        @calories < 200
     end
 
  
@@ -27,6 +27,8 @@ class Dessert
 
 end
 
+#
+
 # Note: You may define additional helper methods.
 
 # (7b): Create a class JellyBean that extends Dessert, and add a getter and setter for flavor. Modify delicious? to return false if the flavor is "black licorice" (but delicious? should still return true for all other flavors and for all non-JellyBean desserts).
@@ -35,20 +37,29 @@ end
 
 class JellyBean < Dessert
 
+    attr_accessor :flavor
+
     def initialize(name, calories, flavor)
-
-        # Your code here
-
+        @flavor = flavor
+        @calories = calories
+        @name = name
     end
 
  
 
     def delicious?
 
-        # Your code here
-
+        if @flavor == "black licorice"
+            false
+        else
+            true
+        end
     end
 
 end
+
+# j = JellyBean.new('fletchers bean', 201, 'black licorice')
+# p j.delicious?
+# p j.healthy?
 
 # Note: As before, you may define additional helper methods.
