@@ -15,7 +15,7 @@
 
 class Numeric
 
- @@currencies = {'yen' => 0.013, 'euro' => 1.292, 'rupee' => 0.019}
+ @@currencies = {'yen' => 0.013, 'euro' => 1.292, 'rupee' => 0.019, 'dollar' => 1}
 
  def method_missing(method_id)
 
@@ -33,6 +33,22 @@ class Numeric
 
  end
 
+ def in(currency)
+
+  currency = currency.to_s.gsub(/s$/, '')
+
+  if @@currencies.has_key?(currency)
+    self/@@currencies[currency]
+  else
+    super
+  end
+
+ end
+
 end
+
+p 5.dollars.in(:euros)
+p 10.euros.in(:rupees)
+
 
  
