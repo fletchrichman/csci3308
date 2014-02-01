@@ -1,4 +1,4 @@
-Object Oriented Programming
+#Object Oriented Programming
 
 # (8) Module provides a method, attr_accessor, which uses meta-programming to create getters and setters for object attributes on the fly. Define a method attr_accessor_with_history that provides the same functionality as attr_accessor but also tracks every value the attribute has ever taken. The following example shows the basic behavior of the new accessor:
 
@@ -63,7 +63,13 @@ class Class
 
         attr_reader attr_name+"_history" # create bar_history getter
 
-        class_eval "your code here, use %Q for multiline strings"
+        class_eval %Q{
+
+            def #{attr_name}=(new_value)
+              @#{attr_name}_history ||= [nil] 
+              @#{attr_name}_history << @#{attr_name} = new_value
+            end
+        }
 
     end
 
@@ -77,13 +83,13 @@ class Foo
 
 end
 
-# Example test case:
+# # Example test case:
 
-f = Foo.new
+# f = Foo.new
 
-f.bar = 1
+# f.bar = 1
 
-f.bar = 2
+# f.bar = 2
 
-f.bar_history # => if your code works, should be [nil, 1, 2]
+# p f.bar_history # => if your code works, should be [nil, 1, 2]
 
